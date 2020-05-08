@@ -40,11 +40,11 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
             Intent intent=new Intent(this, SendNotificationActivity.class);
             intent.putExtra("Title", title);
             intent.putExtra("Message", message);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             PendingIntent pendingIntent= PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_ONE_SHOT);
 
             int notifyID = 1;
-            String CHANNEL_ID = "my_channel_01";
+            String CHANNEL_ID = "learnfirebase";
             Notification notification = new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.ic_notifications_active_black_24dp)
                     .setContentTitle(title)
@@ -52,7 +52,7 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
                     .setContentIntent(pendingIntent)
                     .setChannelId(CHANNEL_ID).build();
 
-            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, "com.cbiu.internship", NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, "com.coxtunes.learnfirebase", NotificationManager.IMPORTANCE_HIGH);
             mNotificationManager.createNotificationChannel(notificationChannel);
             mNotificationManager.notify(notifyID, notification);
 
@@ -63,7 +63,7 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
             Intent intent=new Intent(this, SendNotificationActivity.class);
             intent.putExtra("Title", title);
             intent.putExtra("Message", message);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             PendingIntent pendingIntent= PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_ONE_SHOT);
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.ic_notifications_active_black_24dp)
