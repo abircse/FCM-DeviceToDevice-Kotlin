@@ -36,23 +36,39 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
+            // Send Notification Data to Activity
+            Intent intent=new Intent(this, SendNotificationActivity.class);
+            intent.putExtra("Title", title);
+            intent.putExtra("Message", message);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pendingIntent= PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_ONE_SHOT);
+
             int notifyID = 1;
             String CHANNEL_ID = "my_channel_01";
             Notification notification = new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.ic_notifications_active_black_24dp)
                     .setContentTitle(title)
                     .setContentText(message)
+                    .setContentIntent(pendingIntent)
                     .setChannelId(CHANNEL_ID).build();
 
             NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, "com.cbiu.internship", NotificationManager.IMPORTANCE_HIGH);
             mNotificationManager.createNotificationChannel(notificationChannel);
             mNotificationManager.notify(notifyID, notification);
 
+
+
         } else
         {
+            Intent intent=new Intent(this, SendNotificationActivity.class);
+            intent.putExtra("Title", title);
+            intent.putExtra("Message", message);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pendingIntent= PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_ONE_SHOT);
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.ic_notifications_active_black_24dp)
                     .setContentTitle(title)
+                    .setContentIntent(pendingIntent)
                     .setContentText(message);
             mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             mNotificationManager.notify(0, builder.build());

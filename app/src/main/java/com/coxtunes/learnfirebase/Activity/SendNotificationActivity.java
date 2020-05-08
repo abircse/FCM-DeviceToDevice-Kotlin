@@ -51,6 +51,14 @@ public class SendNotificationActivity extends AppCompatActivity {
         notifysingleuserToken = findViewById(R.id.notification_userid);
         sendNotificationButton = findViewById(R.id.send_notification_button);
 
+        Intent a = getIntent();
+        if (a!=null)
+        {
+            String title = a.getStringExtra("Title");
+            String message = a.getStringExtra("Message");
+            Toast.makeText(this, title+message, Toast.LENGTH_LONG).show();
+        }
+
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
