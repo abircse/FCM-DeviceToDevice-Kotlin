@@ -72,7 +72,7 @@
         android:id="@+id/notification_userid"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="user logged id here"
+        android:text="Boro phone: kFBe5cO83CRabFEsxUpdrxEIv173 Chota phone:  2JVY6Xji1zejAyQYFQ0a7Fq0Fgv1"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView6"
